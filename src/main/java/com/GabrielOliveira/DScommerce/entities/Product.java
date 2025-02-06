@@ -29,13 +29,26 @@ public class Product {
 
     public Product(){}
 
-    public Product(Long id, String name, String description, Double price, String imgUrl, Set<Category> categories) {
+    public Product(Long id, String name, String description, Double price, String imgUrl, Payment payment, Set<Category> categories, Set<OrderItem> items) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
         this.categories = categories;
+        this.items = items;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<OrderItem> items) {
+        this.items = items;
     }
 
     public List<Order> getOrders(){
