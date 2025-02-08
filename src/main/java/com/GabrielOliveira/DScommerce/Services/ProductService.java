@@ -16,9 +16,7 @@ public class ProductService {
     @Transactional(readOnly = true)
     public ProductDTO findById(Long id){
 
-        Product p = repository.findById(id).orElseThrow();
-
-        return new ProductDTO(p);
+        return new ProductDTO(repository.findById(id).orElseThrow());
     }
 
 }
