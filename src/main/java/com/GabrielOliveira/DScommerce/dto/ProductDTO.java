@@ -21,13 +21,13 @@ public class ProductDTO {
 
     public ProductDTO(){}
 
-    public ProductDTO(Long id, String name, String description, Double price, String imgUrl, Set<Category> categories) {
+    public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
-        this.categories = categories;
+
     }
 
     public ProductDTO(Product p) {
@@ -36,7 +36,6 @@ public class ProductDTO {
         this.description = p.getDescription();
         this.price = p.getPrice();
         this.imgUrl = p.getImgUrl();
-        this.categories = p.getCategories();
     }
 
     public Long getId() {
