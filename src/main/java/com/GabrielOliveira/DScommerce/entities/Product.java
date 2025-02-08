@@ -1,5 +1,6 @@
 package com.GabrielOliveira.DScommerce.entities;
 
+import com.GabrielOliveira.DScommerce.dto.ProductDTO;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -35,6 +36,15 @@ public class Product {
         this.categories = categories;
         this.items = items;
     }
+
+    public Product(ProductDTO dto) {
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+        this.price = dto.getPrice();
+        this.imgUrl = dto.getImgUrl();
+    }
+
+
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
