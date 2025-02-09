@@ -11,28 +11,29 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.Instant;
 import java.util.List;
 
 
 @RestController
 @RequestMapping(value = "/products")
-public class ProductController{
+public class ProductController {
 
     @Autowired
-   private ProductService service;
+    private ProductService service;
 
     @GetMapping(value = "/{id}")
-    public ProductDTO findById(@PathVariable Long id){
+    public ProductDTO findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
     @GetMapping
-    public Page<ProductDTO> findAll(Pageable page){
+    public Page<ProductDTO> findAll(Pageable page) {
         return service.findAll(page);
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto){
+    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto) {
 
         dto = service.insert(dto);
 
@@ -40,14 +41,22 @@ public class ProductController{
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto){
+    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+
         service.delete(id);
+
         return ResponseEntity.noContent().build();
+
+    }
+
+    @GetMapping(value = "/below /{price}")
+    public List<ProductDTO> findByPriceLessThan(@PathVariable Double price) {
+        return service.findByPriceLessThan(price);
     }
 
 }
