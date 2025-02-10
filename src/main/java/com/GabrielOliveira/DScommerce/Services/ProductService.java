@@ -5,12 +5,14 @@ import com.GabrielOliveira.DScommerce.Services.Exception.DataBaseException;
 import com.GabrielOliveira.DScommerce.Services.Exception.ResourceNotFoundException;
 import com.GabrielOliveira.DScommerce.dto.ProductDTO;
 import com.GabrielOliveira.DScommerce.entities.Product;
+import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.List;
 
@@ -50,10 +52,11 @@ public class ProductService {
 
             return new ProductDTO(entity);
 
-        } catch (Exception e) {
-            throw new ResourceNotFoundException("Recurso nao encontrado");
-        }
+        } catch (ResourceNotFoundException e) {
 
+            throw new ResourceNotFoundException("Recurso nao encontrado");
+
+        }
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
